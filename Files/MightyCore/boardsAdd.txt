@@ -1,0 +1,278 @@
+
+
+#################################
+####   KM_KL01_ATmega164PA   ####
+#################################
+
+# General
+KL01.name=KM_KL01_ATmega164PA
+KL01.build.core=MCUdude_corefiles
+KL01.build.board=KM_KL_ATmega164
+KL01.upload.tool=avrdude
+KL01.upload.maximum_data_size=1024
+KL01.bootloader.tool=avrdude
+KL01.bootloader.unlock_bits=0x3f
+KL01.bootloader.lock_bits=0x0f
+
+# Upload port select
+KL01.menu.bootloader.uart0=Yes (UART0)
+KL01.menu.bootloader.uart0.build.export_merged_output=true
+KL01.menu.bootloader.uart0.upload.protocol=arduino
+KL01.menu.bootloader.uart0.upload.maximum_size=32256
+KL01.menu.bootloader.uart0.upload.port=UART0
+KL01.menu.bootloader.uart0.bootloader.high_fuses=0b1101{bootloader.eesave_bit}100
+KL01.menu.bootloader.uart0.bootloader.file=optiboot_flash/bootloaders/km_optiboot_mighty/optiboot_m164pa.hex
+
+KL01.menu.bootloader.no_bootloader=No bootloader
+KL01.menu.bootloader.no_bootloader.build.export_merged_output=false
+KL01.menu.bootloader.no_bootloader.upload.maximum_size=32768
+KL01.menu.bootloader.no_bootloader.bootloader.high_fuses=0b1101{bootloader.eesave_bit}101
+KL01.menu.bootloader.no_bootloader.bootloader.file=empty/empty.hex
+
+# EEPROM
+KL01.menu.eeprom.keep=EEPROM retained
+KL01.menu.eeprom.keep.bootloader.eesave_bit=0
+KL01.menu.eeprom.erase=EEPROM not retained
+KL01.menu.eeprom.erase.bootloader.eesave_bit=1
+
+# Pinouts
+KL01.menu.pinout.standard=Standard pinout
+KL01.menu.pinout.standard.build.variant=standard
+KL01.menu.pinout.standard.build.bootloader_led=D3
+
+# Variants
+KL01.menu.variant.modelP=164P / 164PA
+KL01.menu.variant.modelP.build.mcu=atmega164p
+
+# Brown out detection
+KL01.menu.BOD.2v7=BOD 2.7V
+KL01.menu.BOD.2v7.bootloader.extended_fuses=0xfd
+KL01.menu.BOD.4v3=BOD 4.3V
+KL01.menu.BOD.4v3.bootloader.extended_fuses=0xfc
+KL01.menu.BOD.1v8=BOD 1.8V
+KL01.menu.BOD.1v8.bootloader.extended_fuses=0xfe
+KL01.menu.BOD.disabled=BOD disabled
+KL01.menu.BOD.disabled.bootloader.extended_fuses=0xff
+
+# Compiler link time optimization
+KL01.menu.LTO.Os=LTO disabled
+KL01.menu.LTO.Os.ltoarcmd=avr-ar
+KL01.menu.LTO.Os_flto=LTO enabled
+KL01.menu.LTO.Os_flto.ltoarcmd=avr-gcc-ar
+KL01.menu.LTO.Os_flto.compiler.c.extra_flags=-Wextra -flto -g
+
+# Clock frequencies
+KL01.menu.clock.14_7456MHz_external=External 14.7456 MHz
+KL01.menu.clock.14_7456MHz_external.build.f_cpu=14745600L
+KL01.menu.clock.14_7456MHz_external.build.clock_speed={build.f_cpu}
+KL01.menu.clock.14_7456MHz_external.upload.speed=115200
+KL01.menu.clock.14_7456MHz_external.bootloader.low_fuses=0xf7
+
+
+#########################################################
+####  KM01-8600, KM01-2442, KM03-8600,  ATmega324PA  ####
+#########################################################
+
+# General
+km03.name=KM01_KM03_ATmega324PA
+km03.build.core=MCUdude_corefiles
+km03.build.board=KM01_KM03_ATmega324
+km03.upload.tool=avrdude
+km03.upload.maximum_data_size=2048
+km03.bootloader.tool=avrdude
+km03.bootloader.unlock_bits=0x3f
+km03.bootloader.lock_bits=0x0f
+
+# Upload port select
+km03.menu.bootloader.uart0=Yes (UART0)
+km03.menu.bootloader.uart0.build.export_merged_output=true
+km03.menu.bootloader.uart0.upload.protocol=arduino
+km03.menu.bootloader.uart0.upload.maximum_size=32256
+km03.menu.bootloader.uart0.upload.port=UART0
+km03.menu.bootloader.uart0.bootloader.high_fuses=0b1101{bootloader.eesave_bit}110
+km03.menu.bootloader.uart0.bootloader.file=optiboot_flash/bootloaders/km_optiboot_mighty/optiboot_flash_m324pa.hex
+
+km03.menu.bootloader.no_bootloader=No bootloader
+km03.menu.bootloader.no_bootloader.build.export_merged_output=false
+km03.menu.bootloader.no_bootloader.upload.maximum_size=32768
+km03.menu.bootloader.no_bootloader.bootloader.high_fuses=0b1101{bootloader.eesave_bit}111
+km03.menu.bootloader.no_bootloader.bootloader.file=empty/empty.hex
+
+# EEPROM
+km03.menu.eeprom.keep=EEPROM retained
+km03.menu.eeprom.keep.bootloader.eesave_bit=0
+km03.menu.eeprom.erase=EEPROM not retained
+km03.menu.eeprom.erase.bootloader.eesave_bit=1
+
+# Pinouts
+km03.menu.pinout.standard=Standard pinout
+km03.menu.pinout.standard.build.variant=standard
+km03.menu.pinout.standard.build.bootloader_led=B3
+
+# Variants
+km03.menu.variant.modelPA=324PA
+km03.menu.variant.modelPA.build.mcu=atmega324pa
+km03.menu.variant.modelPA.bootloader.cksel_bits=0111
+km03.menu.variant.modelPA.bootloader.cfd_bit=1
+
+# Brown out detection
+km03.menu.BOD.2v7=BOD 2.7V
+km03.menu.BOD.2v7.bootloader.extended_fuses=0b1111{bootloader.cfd_bit}101
+km03.menu.BOD.4v3=BOD 4.3V
+km03.menu.BOD.4v3.bootloader.extended_fuses=0b1111{bootloader.cfd_bit}100
+km03.menu.BOD.1v8=BOD 1.8V
+km03.menu.BOD.1v8.bootloader.extended_fuses=0b1111{bootloader.cfd_bit}110
+km03.menu.BOD.disabled=BOD disabled
+km03.menu.BOD.disabled.bootloader.extended_fuses=0b1111{bootloader.cfd_bit}111
+
+# Compiler link time optimization
+km03.menu.LTO.Os=LTO disabled
+km03.menu.LTO.Os.ltoarcmd=avr-ar
+km03.menu.LTO.Os_flto=LTO enabled
+km03.menu.LTO.Os_flto.ltoarcmd=avr-gcc-ar
+km03.menu.LTO.Os_flto.compiler.c.extra_flags=-Wextra -flto -g
+
+km03.menu.clock.14_7456MHz_external=External 14.7456 MHz
+km03.menu.clock.14_7456MHz_external.build.f_cpu=14745600L
+km03.menu.clock.14_7456MHz_external.build.clock_speed={build.f_cpu}
+km03.menu.clock.14_7456MHz_external.upload.speed=115200
+km03.menu.clock.14_7456MHz_external.bootloader.low_fuses=low_fuses=0b1111{bootloader.cksel_bits}
+
+
+################################
+#### KM02-8600 ATmega644PA  ####
+################################
+
+# General
+km02_8600.name=KM02_8600_ATmega644PA
+km02_8600.build.core=MCUdude_corefiles
+km02_8600.build.board=KM02_8600_ATmega644
+km02_8600.upload.tool=avrdude
+km02_8600.upload.maximum_data_size=4096
+km02_8600.bootloader.tool=avrdude
+km02_8600.bootloader.unlock_bits=0x3f
+km02_8600.bootloader.lock_bits=0x0f
+
+# Upload port select
+km02_8600.menu.bootloader.uart0=Yes (UART0)
+km02_8600.menu.bootloader.uart0.build.export_merged_output=true
+km02_8600.menu.bootloader.uart0.upload.protocol=arduino
+km02_8600.menu.bootloader.uart0.upload.maximum_size=64512
+km02_8600.menu.bootloader.uart0.upload.port=UART0
+km02_8600.menu.bootloader.uart0.bootloader.high_fuses=0b1101{bootloader.eesave_bit}110
+km02_8600.menu.bootloader.uart0.bootloader.file=optiboot_flash/bootloaders/km_optiboot_mighty/optiboot_m644pa.hex
+km02_8600.menu.bootloader.no_bootloader=No bootloader
+km02_8600.menu.bootloader.no_bootloader.build.export_merged_output=false
+km02_8600.menu.bootloader.no_bootloader.upload.maximum_size=65536
+km02_8600.menu.bootloader.no_bootloader.bootloader.high_fuses=0b1101{bootloader.eesave_bit}111
+km02_8600.menu.bootloader.no_bootloader.bootloader.file=empty/empty.hex
+
+# EEPROM
+km02_8600.menu.eeprom.keep=EEPROM retained
+km02_8600.menu.eeprom.keep.bootloader.eesave_bit=0
+km02_8600.menu.eeprom.erase=EEPROM not retained
+km02_8600.menu.eeprom.erase.bootloader.eesave_bit=1
+
+# Pinouts
+km02_8600.menu.pinout.standard=Standard pinout
+km02_8600.menu.pinout.standard.build.variant=standard
+km02_8600.menu.pinout.standard.build.bootloader_led=B2
+
+# Variants
+km02_8600.menu.variant.modelP=644P / 644PA
+km02_8600.menu.variant.modelP.build.mcu=atmega644p
+
+# Brown out detection
+km02_8600.menu.BOD.2v7=BOD 2.7V
+km02_8600.menu.BOD.2v7.bootloader.extended_fuses=0xfd
+km02_8600.menu.BOD.4v3=BOD 4.3V
+km02_8600.menu.BOD.4v3.bootloader.extended_fuses=0xfc
+km02_8600.menu.BOD.1v8=BOD 1.8V
+km02_8600.menu.BOD.1v8.bootloader.extended_fuses=0xfe
+km02_8600.menu.BOD.disabled=BOD disabled
+km02_8600.menu.BOD.disabled.bootloader.extended_fuses=0xff
+
+# Compiler link time optimization
+km02_8600.menu.LTO.Os=Disabled
+km02_8600.menu.LTO.Os.ltoarcmd=avr-ar
+km02_8600.menu.LTO.Os_flto=Enabled
+km02_8600.menu.LTO.Os_flto.ltoarcmd=avr-gcc-ar
+km02_8600.menu.LTO.Os_flto.compiler.c.extra_flags=-Wextra -flto -g
+
+# Clock frequencies
+km02_8600.menu.clock.14_7456MHz_external=External 14.7456 MHz
+km02_8600.menu.clock.14_7456MHz_external.build.f_cpu=14745600L
+km02_8600.menu.clock.14_7456MHz_external.build.clock_speed={build.f_cpu}
+km02_8600.menu.clock.14_7456MHz_external.upload.speed=115200
+km02_8600.menu.clock.14_7456MHz_external.bootloader.low_fuses=0xf7
+
+
+
+####################################
+####   KM02-2442 ATmega1284PA   ####
+####################################
+
+# General
+km02_2442.name=KM02_2442_ATmega1284PA
+km02_2442.build.core=MCUdude_corefiles
+# km02_2442.build.extra_flags={build.clkpr}
+km02_2442.build.board=KM02_2442_ATmega1284
+km02_2442.upload.tool=avrdude
+km02_2442.upload.maximum_data_size=16384
+km02_2442.bootloader.tool=avrdude
+km02_2442.bootloader.unlock_bits=0x3f
+km02_2442.bootloader.lock_bits=0x0f
+
+# Upload port select
+km02_2442.menu.bootloader.uart0=Yes (UART0)
+km02_2442.menu.bootloader.uart0.build.export_merged_output=true
+km02_2442.menu.bootloader.uart0.upload.protocol=arduino
+km02_2442.menu.bootloader.uart0.upload.maximum_size=130048
+km02_2442.menu.bootloader.uart0.upload.port=UART0
+km02_2442.menu.bootloader.uart0.bootloader.high_fuses=0b1101{bootloader.eesave_bit}110
+km02_2442.menu.bootloader.uart0.bootloader.file=optiboot_flash/bootloaders/km_optiboot_mighty/optiboot_km2442_m1284pa.hex
+
+km02_2442.menu.bootloader.no_bootloader=No bootloader
+km02_2442.menu.bootloader.no_bootloader.build.export_merged_output=false
+km02_2442.menu.bootloader.no_bootloader.upload.maximum_size=131072
+km02_2442.menu.bootloader.no_bootloader.bootloader.high_fuses=0b1101{bootloader.eesave_bit}111
+km02_2442.menu.bootloader.no_bootloader.bootloader.file=empty/empty.hex
+
+# EEPROM
+km02_2442.menu.eeprom.keep=EEPROM retained
+km02_2442.menu.eeprom.keep.bootloader.eesave_bit=0
+km02_2442.menu.eeprom.erase=EEPROM not retained
+km02_2442.menu.eeprom.erase.bootloader.eesave_bit=1
+
+# Pinouts
+km02_2442.menu.pinout.standard=Standard pinout
+km02_2442.menu.pinout.standard.build.variant=standard
+km02_2442.menu.pinout.standard.build.bootloader_led=B3
+
+# Variants
+km02_2442.menu.variant.modelP=1284P
+km02_2442.menu.variant.modelP.build.mcu=atmega1284p
+
+# Brown out detection
+km02_2442.menu.BOD.2v7=BOD 2.7V
+km02_2442.menu.BOD.2v7.bootloader.extended_fuses=0xfd
+km02_2442.menu.BOD.4v3=BOD 4.3V
+km02_2442.menu.BOD.4v3.bootloader.extended_fuses=0xfc
+km02_2442.menu.BOD.1v8=BOD 1.8V
+km02_2442.menu.BOD.1v8.bootloader.extended_fuses=0xfe
+km02_2442.menu.BOD.disabled=BOD disabled
+km02_2442.menu.BOD.disabled.bootloader.extended_fuses=0xff
+
+# Compiler link time optimization
+km02_2442.menu.LTO.Os=LTO disabled
+km02_2442.menu.LTO.Os.ltoarcmd=avr-ar
+km02_2442.menu.LTO.Os_flto=LTO enabled
+km02_2442.menu.LTO.Os_flto.ltoarcmd=avr-gcc-ar
+km02_2442.menu.LTO.Os_flto.compiler.c.extra_flags=-Wextra -flto -g
+
+# Clock frequencies
+km02_2442.menu.clock.14_7456MHz_external=External 14.7456 MHz
+km02_2442.menu.clock.14_7456MHz_external.build.f_cpu=14745600L
+km02_2442.menu.clock.14_7456MHz_external.build.clock_speed={build.f_cpu}
+km02_2442.menu.clock.14_7456MHz_external.upload.speed=115200
+km02_2442.menu.clock.14_7456MHz_external.bootloader.low_fuses=0xf7

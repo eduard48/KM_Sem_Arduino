@@ -1,0 +1,69 @@
+
+
+#######################################
+####    KM01-3200 ATmega168PA      ####
+#######################################
+
+# General
+km3200.name=KM3200_ATmega168PA
+km3200.build.core=MCUdude_corefiles
+# km3200.build.extra_flags={build.clkpr}
+km3200.build.board=KM01_ATmega168
+km3200.build.bootloader_led=B5
+km3200.upload.tool=avrdude
+km3200.upload.maximum_size=15872
+km3200.upload.maximum_data_size=1024
+km3200.bootloader.tool=avrdude
+km3200.bootloader.unlock_bits=0xff
+km3200.bootloader.lock_bits=0xcf
+
+# Upload port select
+km3200.menu.bootloader.uart0=Yes (UART0)
+km3200.menu.bootloader.uart0.build.export_merged_output=true
+km3200.menu.bootloader.uart0.upload.protocol=arduino
+km3200.menu.bootloader.uart0.upload.maximum_size=15872
+km3200.menu.bootloader.uart0.upload.port=UART0
+km3200.menu.bootloader.uart0.bootloader.extended_fuses=0xfc
+# km3200.menu.bootloader.uart0.bootloader.file=optiboot_flash/bootloaders/{build.mcu}/{build.clock_speed}/optiboot_flash_{build.mcu}_{upload.port}_{upload.speed}_{build.clock_speed}_{build.bootloader_led}.hex
+km3200.menu.bootloader.uart0.bootloader.file=optiboot_flash/bootloaders/km_optiboot_mini/optiboot_flash_m168_LED_B0.hex
+
+km3200.menu.bootloader.no_bootloader=No bootloader
+km3200.menu.bootloader.no_bootloader.build.export_merged_output=false
+km3200.menu.bootloader.no_bootloader.upload.maximum_size=16384
+km3200.menu.bootloader.no_bootloader.bootloader.extended_fuses=0xfd
+km3200.menu.bootloader.no_bootloader.bootloader.file=empty/empty.hex
+
+# EEPROM
+km3200.menu.eeprom.keep=EEPROM retained
+km3200.menu.eeprom.keep.bootloader.eesave_bit=0
+km3200.menu.eeprom.erase=EEPROM not retained
+km3200.menu.eeprom.erase.bootloader.eesave_bit=1
+
+# Variants
+km3200.menu.variant.modelP=168P / 168PA
+km3200.menu.variant.modelP.build.mcu=atmega168p
+km3200.menu.variant.modelP.build.variant=standard
+km3200.menu.variant.modelP.bootloader.cksel_bits=0111
+
+# Brown out detection
+km3200.menu.BOD.2v7=BOD 2.7V
+km3200.menu.BOD.2v7.bootloader.high_fuses=0b1101{bootloader.eesave_bit}101
+km3200.menu.BOD.4v3=BOD 4.3V
+km3200.menu.BOD.4v3.bootloader.high_fuses=0b1101{bootloader.eesave_bit}100
+km3200.menu.BOD.1v8=BOD 1.8V
+km3200.menu.BOD.1v8.bootloader.high_fuses=0b1101{bootloader.eesave_bit}110
+km3200.menu.BOD.disabled=BOD disabled
+km3200.menu.BOD.disabled.bootloader.high_fuses=0b1101{bootloader.eesave_bit}111
+
+# Compiler link time optimization
+km3200.menu.LTO.Os=LTO Disabled
+km3200.menu.LTO.Os.ltoarcmd=avr-ar
+km3200.menu.LTO.Os_flto=LTO Enabled
+km3200.menu.LTO.Os_flto.ltoarcmd=avr-gcc-ar
+km3200.menu.LTO.Os_flto.compiler.c.extra_flags=-Wextra -flto -g
+
+km3200.menu.clock.14_7456MHz_external=External 14.7456 MHz
+km3200.menu.clock.14_7456MHz_external.build.f_cpu=14745600L
+km3200.menu.clock.14_7456MHz_external.build.clock_speed={build.f_cpu}
+km3200.menu.clock.14_7456MHz_external.upload.speed=115200
+km3200.menu.clock.14_7456MHz_external.bootloader.low_fuses=0b1111{bootloader.cksel_bits}
